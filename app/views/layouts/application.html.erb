@@ -1,15 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>PfMitamiyo</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #432c28;">
+  <div class="container">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <div class="navbar-header">
+      <%= link_to "ミヨミタ", root_path, class: "navbar-brand" %>
+    </div>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+    <% if customer_signed_in? %>
+
+      <span class="u h7 text-white strong">
+        ようこそ！<%= current_customer.customer_name %>さん！
+      </span>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "ユーザーを探す", customers_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "投稿映画一覧", movie_index_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "マイページ", customer_path(current_customer), class: "nav-link" %>
+        </li>
+      </ul>
+
+    <% else %>
+
+      <span class="u h7 text-white strong">
+        ようこそ！ゲストさん！
+      </span>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "ユーザーを探す", customers_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "投稿映画一覧", movie_index_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "会員登録", new_customer_registration_path, class: "nav-link" %>
+        </li>
+      </ul>
+
+    <% end %>
+
+    </div>
+  </nav>

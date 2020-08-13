@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="customer-session-box">
+        <h3>会員の方はこちらからログイン</h3>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{class:"form-horizontal"}) do |f| %>
+            <div class="row">
+              <div class="col-xs-9 col-xs-offset-3">
+                <%= flash[:error] %>
+                <%# エラーメッセージ(login時はなぜかflashに入ってくるみたい) %>
+                <%- flash.each do |name, msg| -%>
+                  <%= content_tag :p, msg, id: "flash_#{name}", class:"error_message" if msg.is_a?(String) %>
+                <%- end -%>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス", class:"col-xs-2 col-xs-offset-1 control-label" %>
+              <div class="col-xs-9 "><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, "パスワード", class:"col-xs-2 col-xs-offset-1 control-label" %>
+              <div class="col-xs-9 "><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-9 col-xs-offset-3"><%= f.submit "ログイン", class:"btn btn-primary" %></div>
+            </div>
+          <% end %>
+      </div>
+      <div class="resistration-box row">
+        <h3>登録がお済みでない方</h3>
+        <div class="col-xs-11 col-xs-offset-1">
+          <p><%= link_to(new_customer_registration_path) do %>こちら<% end %> から新規登録を行ってください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
