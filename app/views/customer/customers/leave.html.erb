@@ -1,0 +1,12 @@
+<div class="container">
+  <h4 class="text-center"><strong>本当に退会しますか？</strong></h4>
+  <p class="withdraw-confirm-message">
+         <p class="text-center">退会すると、会員登録情報や<br>
+     これまでの投稿やブックマークが消えてしまいます。<br>
+    退会する場合は、「退会する」をクリックしてください。</p><br>
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-2"><%= link_to '退会しない', customer_path(@customer), class: "btn btn-success" %></div>　　　
+    <div class="col-xs-2"><%= link_to '退会する', users_hide_path(@customer), method: :patch, class: "btn btn-danger" %></div>
+  </div>
+</div>

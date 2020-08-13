@@ -1,23 +1,18 @@
 require 'test_helper'
 
-class MoviesControllerTest < ActionDispatch::IntegrationTest
+class Customer::CustomersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get movies_index_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get movies_new_url
+    get customer_customers_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get movies_show_url
+    get customer_customers_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get movies_edit_url
+    get customer_customers_edit_url
     assert_response :success
   end
 

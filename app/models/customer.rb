@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_boards, through: :bookmarks, source: :board
 
+  attachment :image
+
   # 半角英数字のみ、重複なし
   validates :user_id, presence: true
   # 15文字以内

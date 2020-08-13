@@ -8,7 +8,7 @@ class CreateMovies < ActiveRecord::Migration[5.2]
 
 		t.string :title, null: false, default: ""
 		t.text :impression
-		t.string :movie_image
+		t.string :movie_image_id
 		t.float :rate, null: false, default: ""
 		t.boolean :netflix, null: false, default: "true"
 		t.boolean :amazon, null: false, default: "true"

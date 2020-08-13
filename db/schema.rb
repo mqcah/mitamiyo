@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_072729) do
     t.integer "genre_id", null: false
     t.string "title", default: "", null: false
     t.text "impression"
-    t.string "movie_image"
+    t.string "movie_image_id"
     t.float "rate", null: false
     t.boolean "netflix", default: true, null: false
     t.boolean "amazon", default: true, null: false
