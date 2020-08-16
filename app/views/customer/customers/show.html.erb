@@ -1,0 +1,11 @@
+<%= attachment_image_tag @customer, :image, :fill, 280, 210, format: 'jpeg' %>
+
+<h3><strong><%= @customer.customer_name %></strong></h3>
+
+<%= '@' + @customer.user_id %>
+
+<%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-success" %>
+
+<%= @customer.profile %>
+
+
