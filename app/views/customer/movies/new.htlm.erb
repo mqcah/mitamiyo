@@ -1,0 +1,66 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-2">
+			<h2>映画評価投稿</h2>
+		</div>
+	</div>
+	<%= form_for(@movie, url: movie_index_path) do |f| %>
+	<%= f.hidden_field :movie_id, { value: @movie} %>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-2">
+			<% if @movie.errors.any? %>
+			<div id="error_explanation" class="alert alert-danger">
+				<h3><%= @movie.errors.count %></h3>
+				<ul>
+					<% @movie.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+			<!-- 画像選択 -->
+			<p>ファイル選択 <%= f.attachment_field :movie_image %></p>
+		</div>
+		<div class="col-md-6">
+			<!-- タイトル -->
+			<h3>タイトル     <%= f.text_field :title %></h3>
+
+			  <!-- 評価 -->
+			  <div class="form-group row" id="star">
+			    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+			    <%= f.hidden_field :rate, id: :review_star %>
+			  </div>
+			  <div id='star'></div>
+			  <!-- 評価javascript -->
+			  <script>
+			  $('#star').raty({
+			    size     : 36,
+			    starOff:  '<%= asset_path('star-off.png') %>',
+			    starOn : '<%= asset_path('star-on.png') %>',
+			    starHalf: '<%= asset_path('star-half.png') %>',
+			    scoreName: 'review[rate]',
+			    half: true,
+			  });
+			  </script>
+
+			<!-- 感想 -->
+			<h3>感想   <%= f.text_area :impression %></h3>
+			<!-- ジャンル選択 -->
+			  <p>
+			    <%= f.label :genre, 'ジャンル' %>
+			    <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %> 
+			      <%= genre.label do %>
+			        <%= genre.check_box %>
+			        <%= genre.text %>
+			      <% end %>
+			    <% end %>
+			  </p>
+		</div>
+	</div>　
+	<div class="row">
+		<div class="col-md-4 col-md-offset-8">
+			<p><%= f.submit '新規登録', class: "btn btn-primary" %></p>
+		</div>
+	</div>
+	<% end %>
+</div>

@@ -20,7 +20,6 @@ class Customer::CustomersController < ApplicationController
   end
 
   def leave
-    @customer = Customer.find(current_customer.id)
   end
 
   def hide

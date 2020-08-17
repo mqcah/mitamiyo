@@ -1,6 +1,7 @@
 <div class="container">
 <h2>プロフィール編集</h2>
 <%= form_for(@customer, url: customer_path) do |f| %>
+<p>ファイル選択 <%= f.attachment_field :image %></p>
 ユーザーネーム<%= f.text_field :customer_name %>
 プロフィール<%= f.text_field :profile %>
 <%= f.submit "変更を保存する", class:"btn btn-success", style: "width: 12em" %>

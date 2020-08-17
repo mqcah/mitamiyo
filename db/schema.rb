@@ -53,15 +53,13 @@ ActiveRecord::Schema.define(version: 2020_08_12_072729) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "genre_id", null: false
-    t.string "title", default: "", null: false
-    t.text "impression"
+    t.string "title", default: ""
+    t.text "impression", default: ""
+    t.float "rate"
     t.string "movie_image_id"
-    t.float "rate", null: false
-    t.boolean "netflix", default: true, null: false
-    t.boolean "amazon", default: true, null: false
-    t.boolean "hule", default: true, null: false
+    t.boolean "netflix", default: true
+    t.boolean "amazon", default: true
+    t.boolean "hulu", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

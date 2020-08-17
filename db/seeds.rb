@@ -14,3 +14,15 @@ Customer.create!(
                   email: "test@test.jp",
                   password: "password",
                   )
+genre_names = [
+  'ケーキ',
+  'キャンディ',
+  'プリン',
+  '焼き菓子'
+]
+
+genre_names.each do |genre_name|
+  Genre.create!(
+    name: genre_name,
+  )
+end
