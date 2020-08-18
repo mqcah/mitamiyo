@@ -1,2 +1,11 @@
-<h1>Customer::Customers#index</h1>
-<p>Find me in app/views/customer/customers/index.html.erb</p>
+<% @customers.each do |customer| %>
+
+<!-- アイコン -->
+<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
+
+<!-- ユーザーネーム -->
+<%= link_to customer.customer_name, customer_path(customer.id) %>
+
+<!-- ユーザーID -->
+<%= '@' + customer.user_id %>
+<% end %>

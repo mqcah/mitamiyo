@@ -1,1 +1,36 @@
-show
+<!-- 映画イメージ -->
+<%= attachment_image_tag @movie, :movie_image, :fill, 280, 210, format: 'jpeg' %>
+
+<!-- 映画タイトル -->
+<%= @movie.title %>
+
+<!-- ジャンル -->
+カテゴリ
+<% @movie.genres.each do |genre| %>
+  <%= genre.name %>
+<% end %>
+<!-- レビュー -->
+
+<!-- netflix-->
+<% if @movie.netflix == true %>
+	Netflix：なし
+<% else %>
+	Netflix：有り
+<% end %>
+
+<!-- amazon-prime -->
+<% if @movie.netflix == true %>
+	AmazonPrime：なし
+<% else %>
+	AmazonPrime：有り
+<% end %>
+
+<!-- hulu -->
+<% if @movie.netflix == true %>
+	Hulu：なし
+<% else %>
+	Hulu：有り
+<% end %>
+
+<!-- 感想 -->
+<%= @movie.impression %>

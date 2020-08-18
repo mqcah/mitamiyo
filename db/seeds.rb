@@ -15,10 +15,10 @@ Customer.create!(
                   password: "password",
                   )
 genre_names = [
-  'ケーキ',
-  'キャンディ',
-  'プリン',
-  '焼き菓子'
+  'アクション',
+  'ホラー',
+  '恋愛',
+  'サスペンス'
 ]
 
 genre_names.each do |genre_name|

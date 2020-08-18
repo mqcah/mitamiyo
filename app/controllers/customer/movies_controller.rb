@@ -27,7 +27,7 @@ class Customer::MoviesController < ApplicationController
   def update
   	@movie = Movie.find(params[:id])
   	if Movie.update(movie_params)
-  	   redirect_to _path(@movie.id)
+  	   redirect_to movie_path(@movie.id)
   	else
   	   render :edit
   	end
@@ -35,6 +35,6 @@ class Customer::MoviesController < ApplicationController
 
   private
   def movie_params
-  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, :customer_id, :genre_ids)
+  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, :customer_id, genre_ids: [])
   end
 end
