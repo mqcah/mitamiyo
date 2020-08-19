@@ -1,11 +1,17 @@
+<!-- アイコン -->
 <%= attachment_image_tag @customer, :image, :fill, 280, 210, format: 'jpeg' %>
 
+<!-- ユーザーネーム -->
 <h3><strong><%= @customer.customer_name %></strong></h3>
 
+<!-- ユーザーID -->
 <%= '@' + @customer.user_id %>
+
+<!-- プロフィール -->
+<%= @customer.profile %>
 
 <%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-success" %>
 
-<%= @customer.profile %>
+
 
 

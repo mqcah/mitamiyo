@@ -5,12 +5,23 @@
 <%= @movie.title %>
 
 <!-- ジャンル -->
-カテゴリ
+カテゴリ：
 <% @movie.genres.each do |genre| %>
   <%= genre.name %>
 <% end %>
 <!-- レビュー -->
-
+<div id="star-rate-<%= @movie.id %>"></div>
+ <script>
+  $('#star-rate-<%= @movie.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @movie.rate %>,
+  });
+</script>
 <!-- netflix-->
 <% if @movie.netflix == true %>
 	Netflix：なし

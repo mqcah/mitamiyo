@@ -6,28 +6,41 @@
 <%= link_to movie.title, movie_path(movie.id) %>
 
 <!-- ジャンル -->
-
+<% @movie.genres.each do |genre| %>
+  <%= genre.name %>
+<% end %>
 <!-- レビュー -->
-
+<div id="star-rate-<%= @movie.id %>"></div>
+ <script>
+  $('#star-rate-<%= @movie.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @movie.rate %>,
+  });
+</script>
 <!-- netflix-->
 <% if movie.netflix == true %>
     Netflix：なし
 <% else %>
-    Netflix：有り
+    Netflix：あり
 <% end %>
 
 <!-- amazon-prime -->
 <% if movie.amazon == true %>
     AmazonPrime：なし
 <% else %>
-     AmazonPrime：有り
+     AmazonPrime：あり
 <% end %>
 
 <!-- hulu -->
 <% if movie.hulu == true %>
 	Hulu：なし
 <% else %>
-	Hulu：有り
+	Hulu：あり
 <% end %>
 
 <% end %>

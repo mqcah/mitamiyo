@@ -12,6 +12,11 @@ class Movie < ApplicationRecord
   def bookmark_by?(customer)
     bookmarks.where(customer_id: cusotmer.id).exists?
   end
-  
-  validates :title,  presence: true
+
+  with_options presence: true do
+    validates :title
+    validates :rate
+    validates :genre
+  end
+
 end

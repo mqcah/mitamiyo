@@ -35,6 +35,6 @@ class Customer::MoviesController < ApplicationController
 
   private
   def movie_params
-  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, :customer_id, genre_ids: [])
+  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :star-rate, :hulu, :customer_id, genre_ids: [])
   end
 end

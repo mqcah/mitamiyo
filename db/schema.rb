@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_072729) do
   create_table "movies", force: :cascade do |t|
     t.string "title", default: ""
     t.text "impression", default: ""
-    t.float "rate"
+    t.float "rate", default: 3.0
     t.string "movie_image_id"
     t.boolean "netflix", default: true
     t.boolean "amazon", default: true
