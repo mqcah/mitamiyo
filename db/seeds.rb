@@ -11,7 +11,16 @@ Customer.create!(
                   customer_name: "ミタミヨ",
                   profile: "アクション系の映画が好きな主婦です",
                   image_id: "",
-                  email: "test@test.jp",
+                  email: "test@mmail",
+                  password: "password",
+                  )
+Customer.create!(
+                  customer_status: "true",
+                  user_id: "mitamiyo2",
+                  customer_name: "ミタミヨ2",
+                  profile: "ホラー系の映画が好きな学生です",
+                  image_id: "",
+                  email: "test2@mail",
                   password: "password",
                   )
 genre_names = [

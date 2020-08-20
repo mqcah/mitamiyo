@@ -1,6 +1,12 @@
 class Customer::MoviesController < ApplicationController
   def index
-  	@movies = Movie.page(params[:page]).per(10)
+    @movies = Movie.page(params[:page]).per(10)
+    @movies = Movie.all.includes(:customer).recent
+    @genres = Genre.all
+  end
+
+  def bookmarks
+    @movies = current_customer.bookmark_movies.includes(:customer).recent
   end
 
   def show
@@ -21,7 +27,7 @@ class Customer::MoviesController < ApplicationController
   end
 
   def edit
-  	@movie = Movie.fond(params[:id])
+  	@movie = Movie.find(params[:id])
   end
 
   def update
@@ -35,6 +41,6 @@ class Customer::MoviesController < ApplicationController
 
   private
   def movie_params
-  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :star-rate, :hulu, :customer_id, genre_ids: [])
+  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, :customer_id, genre_ids: [])
   end
 end

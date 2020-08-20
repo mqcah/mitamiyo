@@ -8,15 +8,16 @@ class Movie < ApplicationRecord
 
   attachment :movie_image
 
-  # boardのお気に入り判定 → vies側で呼び出し
+# movieのお気に入り判定 → vies側で呼び出し
   def bookmark_by?(customer)
-    bookmarks.where(customer_id: cusotmer.id).exists?
+    bookmarks.where(customer_id: customer.id).exists?
   end
+  scope :recent, -> { order(created_at: :desc) }
 
   with_options presence: true do
     validates :title
     validates :rate
-    validates :genre
+    validates :genre_ids
   end
 
 end

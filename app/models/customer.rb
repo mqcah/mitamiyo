@@ -6,9 +6,10 @@ class Customer < ApplicationRecord
 
   has_many :movies, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmark_boards, through: :bookmarks, source: :board
+  has_many :bookmark_movies, through: :bookmarks, source: :movie
 
   attachment :image
+
   # 半角英数字のみ、重複なし
   validates :user_id, presence: true
   # 15文字以内

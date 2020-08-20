@@ -1,47 +1,79 @@
-<!-- 映画イメージ -->
-<%= attachment_image_tag @movie, :movie_image, :fill, 280, 210, format: 'jpeg' %>
+<div class="container">
+  <!-- 映画イメージ -->
+  <div class="row">
+    <% if @movie.movie_image.present? %>
+    	<%= attachment_image_tag @movie, :movie_image, :fill, 360, 270, format: 'jpeg' %>
+    <% else %>
+        <%= image_tag 'no-movie.png', size: '300x300' %>
+    <% end %>
+  </div>
 
-<!-- 映画タイトル -->
-<%= @movie.title %>
+  <!-- 映画タイトル -->
+  <div class="row">
+    <h1>
+      <%= @movie.title %>
+    </h1>
+  </div>
+  <!-- ジャンル -->
+  <div class="row">
+    ジャンル
+    <% @movie.genres.each do |genre| %>
+      <%= genre.name %>
+    <% end %>
+  </div>
+  <!-- レビュー -->
+  <div class="row">
+    <div id="star-rate-<%= @movie.id %>"></div>
+     <script>
+      $('#star-rate-<%= @movie.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= @movie.rate %>,
+      });
+    </script>
+  </div>
 
-<!-- ジャンル -->
-カテゴリ：
-<% @movie.genres.each do |genre| %>
-  <%= genre.name %>
-<% end %>
-<!-- レビュー -->
-<div id="star-rate-<%= @movie.id %>"></div>
- <script>
-  $('#star-rate-<%= @movie.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @movie.rate %>,
-  });
-</script>
-<!-- netflix-->
-<% if @movie.netflix == true %>
-	Netflix：なし
-<% else %>
-	Netflix：有り
-<% end %>
 
-<!-- amazon-prime -->
-<% if @movie.netflix == true %>
-	AmazonPrime：なし
-<% else %>
-	AmazonPrime：有り
-<% end %>
+  <!-- netflix-->
+  <div class="row">
+    <% if @movie.netflix == true %>
+    	Netflix：なし
+    <% else %>
+    	Netflix：あり
+    <% end %>
+  </div>
 
-<!-- hulu -->
-<% if @movie.netflix == true %>
-	Hulu：なし
-<% else %>
-	Hulu：有り
-<% end %>
+  <!-- amazon-prime -->
+  <div class="row">
+    <% if @movie.netflix == true %>
+    	AmazonPrime：なし
+    <% else %>
+    	AmazonPrime：あり
+    <% end %>
+  </div>
 
-<!-- 感想 -->
-<%= @movie.impression %>
+  <!-- hulu -->
+  <div class="row">
+    <% if @movie.netflix == true %>
+    	Hulu：なし
+    <% else %>
+    	Hulu：あり
+    <% end %>
+  </div>
+
+  <!-- 感想 -->
+  <div class="row">
+    <%= @movie.impression %>
+  </div>
+
+  <%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %>
+</div>
+
+
+
+
+

@@ -10,6 +10,7 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <!-- 非同期通信を行うためのファイル指定 -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <script type="text/javascript"></script>
     </head>
 
@@ -40,6 +41,7 @@
                         <li><%= link_to "映画一覧", movies_path %></li>
                         <li><%= link_to "About", about_path %></li>
                         <li><%= link_to "マイページ", customer_path(current_customer) %></li>
+                        <li><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete %></li>
                     <% else %>
                         <li><%= link_to "ユーザーを探す", customers_path %><li>
                         <li><%= link_to "投稿映画一覧", movies_path %></li>

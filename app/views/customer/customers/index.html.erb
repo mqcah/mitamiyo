@@ -1,11 +1,14 @@
 <% @customers.each do |customer| %>
 
-<!-- アイコン -->
-<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
+	<!-- アイコン -->
+	<% if customer.image.present? %>
+		<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
+	<% else %>
+	    <%= image_tag 'customer.png', size: '200x200' %>
+	<% end %>
+	<!-- ユーザーネーム -->
+	<%= link_to customer.customer_name, customer_path(customer.id) %>
 
-<!-- ユーザーネーム -->
-<%= link_to customer.customer_name, customer_path(customer.id) %>
-
-<!-- ユーザーID -->
-<%= '@' + customer.user_id %>
+	<!-- ユーザーID -->
+	<%= '@' + customer.user_id %>
 <% end %>
