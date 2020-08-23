@@ -1,56 +1,106 @@
-<h2>投稿編集</h2>
 
+    <% if @movie.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= @movie.errors.count %> errors prohibited this obj from being saved:</h3>
+        <ul>
+        <% @movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<!-- 口コミ入力フォーム -->
 <%= form_for(@movie, url: movie_path) do |f| %>
-
-	<!-- 画像 -->
-	<p>ファイル選択 <%= f.attachment_field :movie_image %></p>
-
-	<!-- タイトル -->
-	<%= f.text_field :title%>
-
-	<!-- レビュー -->
-    <div class="form-group row" id="star">
-      <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-        <%= f.hidden_field :rate, id: :movie %>
+  <!--映画コードの送信-->
+  <%= f.hidden_field :movie_id, { value: @movie.id} %>
+    <!-- タイトル -->
+    <div class="form-group row">
+      <%= f.label :title, 'タイトル ', class:'col-md-3 col-form-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
     </div>
-    <!-- 評価javascript -->
-    <script>
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'movie[rate]',
-        half: true,
-      });
-    </script>
-	<!-- ジャンル -->
-	<%= f.label :genre, 'ジャンル' %>
-		<%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
-			<%= genre.label do %>
-			<%= genre.check_box %>
-			<%= genre.text %>
-		<% end %>
-	<% end %>
+    <!-- 評価 -->
+      <div class="form-group row" id="star">
+        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+          <%= f.hidden_field :rate, id: :movie %>
+      </div>
+      <!-- 評価javascript -->
+        <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'movie[rate]',
+            half: true,
+          });
+        </script>
+    <!-- サブスク -->
+    <div class="form-group row">
+      <%= f.label :netflix, 'Netflix', class:'col-md-3 col-form-label' %>
+        <div class="col-xs-1">
+          <%= f.radio_button :netflix, :true %>
+            <%= f.label :netflix, "ない" %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :netflix, :false %>
+            <%= f.label :netflix, "ある" %>
+        </div>
+    </div>
+    <div class="form-group row">
+      <%= f.label :amazon, 'AmazonPrime', class:'col-md-3 col-form-label' %>
+        <div class="col-xs-1">
+          <%= f.radio_button :amazon, :true %>
+            <%= f.label :amazon, "ない" %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :amazon, :false %>
+            <%= f.label :amazon, "ある" %>
+        </div>
+    </div>
+    <div class="form-group row">
+      <%= f.label :hulu, 'Hulu', class:'col-md-3 col-form-label' %>
+        <div class="col-xs-1">
+          <%= f.radio_button :hulu, :true %>
+            <%= f.label :hulu, "ない" %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :hulu, :false %>
+            <%= f.label :hulu, "ある" %>
+        </div>
+    </div>
+    <!-- genre -->
+    <div class="form-group row">
+          <%= f.label :genre, 'ジャンル　(複数択可)', class:'col-md-3 col-form-label' %>
+          <div class="col-md-9">
+            <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+              <%= genre.label do %>
+              <%= genre.check_box %>
+              <%= genre.text %>
+              <% end %>
+            <% end %>
+          </div>
+    </div>
 
-	<!-- netflix -->
-	<%= f.radio_button :netflix, :true %>
-		<%= f.label :netflix, "Netflix：なし" %>
-	<%= f.radio_button :netflix, :false %>
-		<%= f.label :netflix, "Netflix：あり" %>
-	<!-- amazon -->
-	<%= f.radio_button :amazon, :true %>
-		<%= f.label :amazon, "AmazonPrime：なし" %>
-	<%= f.radio_button :amazon, :false %>
-		<%= f.label :amazon, "AmazonPrime：あり" %>
-	<!-- hulu -->
-	<%= f.radio_button :hulu, :true %>
-		<%= f.label :hulu, "Hulu：なし" %>
-	<%= f.radio_button :hulu, :false %>
-		<%= f.label :hulu, "Hulu：あり" %>
-	<!-- 感想 -->
-	<%= f.text_field :impression%>
-
-	<%= f.submit "変更を保存する", class:"btn btn-success", style: "width: 12em" %>
-
+    <!-- 口コミ -->
+    <div class="form-group row">
+      <%= f.label :impression, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :impression, class: "form-control", rows: "8",
+        placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！投稿してから編集もできますよ！'%>
+        </div>
+    </div>
+    <strong class="col-md-3 col-form-label" >映画画像</strong>
+    <div class="col-md-9">
+      <%= f.attachment_field :movie_image %>
+    </div>
+    <!-- 確認ボタン -->
+    <br><br>
+    <div class="form-group row justify-content-end">
+      <div class="col-md-9">
+        <%= f.submit '更新する', class:"btn btn-success" %>
+      </div>
+    </div>
 <% end %>

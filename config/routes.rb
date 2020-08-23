@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :customer do
-    get 'bookmarks/create'
-    get 'bookmarks/destroy'
+    resources :movies, shallow: true do
+	  resource :bookmarks, only: [:create, :destroy]
+	  get :bookmarks, on: :collection
+	end
   end
 	devise_for :customers, controllers: {
 	    sessions: 'customers/sessions',
@@ -20,9 +22,5 @@ Rails.application.routes.draw do
 	    resources :movies, only: [:index, :create, :destroy, :update, :edit, :show, :new]
 	end
 
-	resources :movies, shallow: true do
-	  resource :bookmarks, only: [:create, :destroy]
-	  get :bookmarks, on: :collection
-	end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

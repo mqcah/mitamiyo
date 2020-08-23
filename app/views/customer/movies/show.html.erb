@@ -1,76 +1,74 @@
 <div class="container">
-  <!-- 映画イメージ -->
   <div class="row">
-    <% if @movie.movie_image.present? %>
-    	<%= attachment_image_tag @movie, :movie_image, :fill, 360, 270, format: 'jpeg' %>
-    <% else %>
-        <%= image_tag 'no-movie.png', size: '300x300' %>
-    <% end %>
-  </div>
+    <!-- 映画イメージ -->
+    <div class="col-md-3">
+      <tr><% if @movie.movie_image.present? %>
+      	<%= attachment_image_tag @movie, :movie_image, :fill, 210, 280, format: 'jpeg' %>
+      <% else %>
+          <%= image_tag 'no-movie.png', size: '300x300' %>
+      <% end %></tr>
+      <br><%= render 'customer/movies/bookmark_area', movie: @movie %>
+    </div>
 
-  <!-- 映画タイトル -->
-  <div class="row">
-    <h1>
-      <%= @movie.title %>
-    </h1>
-  </div>
-  <!-- ジャンル -->
-  <div class="row">
-    ジャンル
-    <% @movie.genres.each do |genre| %>
-      <%= genre.name %>
-    <% end %>
-  </div>
-  <!-- レビュー -->
-  <div class="row">
-    <div id="star-rate-<%= @movie.id %>"></div>
-     <script>
-      $('#star-rate-<%= @movie.id %>').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= @movie.rate %>,
-      });
-    </script>
-  </div>
+    <!-- 映画タイトル -->
+    <div class="col-md-5">
+      <table class="table table-bordered">
+        <h1><%= @movie.title %></h1><br>
+      <!-- ジャンル -->
+        ジャンル：
+        <% @movie.genres.each do |genre| %>
+          <%= genre.name + ' ' %>
+        <% end %>
+        <br><br>
+      <!-- レビュー -->
+        <div id="star-rate-<%= @movie.id %>"></div>
+         <script>
+          $('#star-rate-<%= @movie.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @movie.rate %>,
+          });
+        </script>
+        <br>
+      <!-- netflix-->
+        <% if @movie.netflix == true %>
+        	Netflix：なし
+        <% else %>
+        	Netflix：あり
+        <% end %>
+        <br><br>
+      <!-- amazon-prime -->
+        <% if @movie.netflix == true %>
+        	AmazonPrime：なし
+        <% else %>
+        	AmazonPrime：あり
+        <% end %>
+        <br><br>
 
+      <!-- hulu -->
+        <% if @movie.netflix == true %>
+        	Hulu：なし
+        <% else %>
+        	Hulu：あり
+        <% end %>
+        <br><br>
 
-  <!-- netflix-->
-  <div class="row">
-    <% if @movie.netflix == true %>
-    	Netflix：なし
-    <% else %>
-    	Netflix：あり
-    <% end %>
+      <!-- 感想 -->
+      <h3>感想・評価</h3>
+        <%= @movie.impression %>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="col-md-11">
+        <p><%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %></p>
+    </div>
+
   </div>
-
-  <!-- amazon-prime -->
-  <div class="row">
-    <% if @movie.netflix == true %>
-    	AmazonPrime：なし
-    <% else %>
-    	AmazonPrime：あり
-    <% end %>
-  </div>
-
-  <!-- hulu -->
-  <div class="row">
-    <% if @movie.netflix == true %>
-    	Hulu：なし
-    <% else %>
-    	Hulu：あり
-    <% end %>
-  </div>
-
-  <!-- 感想 -->
-  <div class="row">
-    <%= @movie.impression %>
-  </div>
-
-  <%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %>
 </div>
 
 

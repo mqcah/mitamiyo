@@ -74,14 +74,12 @@
     <!-- genre -->
     <div class="form-group row">
           <%= f.label :genre, 'ジャンル　(複数択可)', class:'col-md-3 col-form-label' %>
-          <div class="col-md-9">
             <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
               <%= genre.label do %>
               <%= genre.check_box %>
               <%= genre.text %>
               <% end %>
             <% end %>
-          </div>
     </div>
 
     <!-- 口コミ -->

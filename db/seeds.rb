@@ -11,7 +11,7 @@ Customer.create!(
                   customer_name: "ミタミヨ",
                   profile: "アクション系の映画が好きな主婦です",
                   image_id: "",
-                  email: "test@mmail",
+                  email: "test@mail",
                   password: "password",
                   )
 Customer.create!(

@@ -53,7 +53,6 @@
             </div>
         </nav>
 
-
         <div class="container" style="margin-top: 105px">
 
             <% if flash[:notice] %>
@@ -67,7 +66,15 @@
 
         </div>
 
+
     </body>
+                        <dl class="searchbox">
+          <%= search_form_for @search, url: customers_path do |f| %>
+            <dt><%= f.text_field :user_id_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>
+
 
 </html>
 

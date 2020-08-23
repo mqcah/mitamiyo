@@ -1,5 +1,5 @@
-<% if movie.bookmark_by?(current_user) %> 
-  <%= render 'movies/bookmark', movei: movie %>
+ <% if movie.bookmark_by?(current_customer) %>
+	<%= link_to 'ブックマーク解除', customer_movie_bookmarks_path(movie.id), method: :delete, id: :"js-bookmark-button-for-movie-#{movie.id}" %>
 <% else %>
-  <%= render 'movies/unbookmark', movie: movie %>
+		<%= link_to 'ブックマーク', customer_movie_bookmarks_path(movie.id), method: :post, id: :"js-bookmark-button-for-movie-#{movie.id}"%>
 <% end %>

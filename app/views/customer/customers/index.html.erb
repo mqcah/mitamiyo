@@ -1,14 +1,16 @@
-<% @customers.each do |customer| %>
+<% @search_customers.each do |customer| %>
 
 	<!-- アイコン -->
-	<% if customer.image.present? %>
-		<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
-	<% else %>
-	    <%= image_tag 'customer.png', size: '200x200' %>
-	<% end %>
-	<!-- ユーザーネーム -->
-	<%= link_to customer.customer_name, customer_path(customer.id) %>
+	<div class="imag">
+		<% if customer.image.present? %>
+			<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
+		<% else %>
+		    <%= image_tag 'customer.png', size: '200x200' %>
+		<% end %>
+	</div>
+		<!-- ユーザーネーム -->
+		<%= link_to customer.customer_name, customer_path(customer.id) %>
 
-	<!-- ユーザーID -->
-	<%= '@' + customer.user_id %>
+		<!-- ユーザーID -->
+		<%= '@' + customer.user_id %>
 <% end %>
