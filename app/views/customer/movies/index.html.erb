@@ -1,4 +1,5 @@
 <div class="container">
+	
 	<% @movies.each do |movie| %>
 		<div class="row">
 			<!-- 映画画像 -->
@@ -8,11 +9,11 @@
 				<% else %>
 				    <%= image_tag 'no-movie.png', size: '200x200' %>
 				<% end %></tr>
+			<!-- ブックマーク -->
+			<%= render 'customer/movies/bookmark_area', movie: movie %>
 			</div>
 
 			<div class="col-md-5">
-				<!-- ブックマーク -->
-
 				<!-- 映画タイトル -->
 				<h1><%= link_to movie.title, movie_path(movie.id) %></h1><br>
 

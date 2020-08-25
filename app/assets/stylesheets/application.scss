@@ -15,3 +15,108 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.logo {
+    font-size: 50px;
+    font-family: Impact;
+}
+
+.logo a:hover {
+	color: black;
+	background-color: white;
+}
+
+.logo a {
+	color: white;
+}
+/*追加*/
+
+
+
+nav {
+	background-color : #00FF3B;
+}
+
+
+body {
+	background-color: #ffffff;
+}
+
+.text-color {
+	color: white;
+}
+
+.text-color a{
+	color: white;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: black;
+	background-color :#faebd7;
+}
+
+.btn-primary {
+	background: #a52a2a;
+	color: white;
+	border: none;
+}
+
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-primary:active, .btn-primary:active:focus{
+  background-color: #cd5c5c !important;
+  border: none !important;
+  outline: none;
+}
+
+
+.btn-danger {
+	background: #d3d3d3;
+	color: black;
+	border: none;
+}
+
+.btn-danger:hover,.btn-danger:focus,
+.btn-danger:active, .btn-danger:active:focus{
+	background: #d3d3d3 !important;
+	color: #ff0000;
+	border: none !important;
+	outline: none;
+}
+
+.btn-success {
+	background: #90EE90;
+	color: #000000;
+	border-color: gray;
+}
+
+.btn-success:hover,.btn-success:focus,
+.btn-success:active, .btn-success:active:focus{
+	background: #dcdcdc !important;
+	color: #000000 !important;
+	border: none;
+	outline: none;
+}
+
+.page-title {
+	margin: 0 0 20px 20px;
+}
+
+.table .p-center{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table .p-center_v{
+    vertical-align: middle;
+}
+
+.glyphicon-th-list {
+    color: white;
+}
+

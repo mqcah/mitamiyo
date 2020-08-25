@@ -1,14 +1,17 @@
 <div class="container">
   <div class="row">
-    <!-- 映画イメージ -->
     <div class="col-md-3">
+      <!-- 映画イメージ -->
+      <br>
       <tr><% if @movie.movie_image.present? %>
       	<%= attachment_image_tag @movie, :movie_image, :fill, 210, 280, format: 'jpeg' %>
       <% else %>
           <%= image_tag 'no-movie.png', size: '300x300' %>
       <% end %></tr>
+      <!-- ブックマーク -->
       <br><%= render 'customer/movies/bookmark_area', movie: @movie %>
     </div>
+
 
     <!-- 映画タイトル -->
     <div class="col-md-5">
@@ -58,16 +61,19 @@
         <br><br>
 
       <!-- 感想 -->
-      <h3>感想・評価</h3>
-        <%= @movie.impression %>
+        <h3>感想・評価</h3>
+        <div class="box2">
+          <%= @movie.impression %>
+        </div>
       </table>
     </div>
 
-    <div class="row">
-      <div class="col-md-11">
-        <p><%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %></p>
-    </div>
+      <div class="row">
+        <div class="col-md-11">
+          <p><%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %></p>
+      </div>
 
+    </div>
   </div>
 </div>
 

@@ -1,3 +1,17 @@
 // Place all the styles related to the customer/movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: black;/*文字色*/
+    background: #FFF;
+    border: solid 3px #90EE90;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}

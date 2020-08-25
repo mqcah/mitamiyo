@@ -1,16 +1,25 @@
-<% @search_customers.each do |customer| %>
+<div class="container">
+	<div class="row">
+		<% @search_customers.each do |customer| %>
+			<div class="row">
+				<div class="col-md-2">
+						<!-- アイコン -->
+						<div class="imag">
+							<tr><% if customer.image.present? %>
+								<%= attachment_image_tag customer, :image, :fill, 160, 160, format: 'jpeg' %>
+							<% else %>
+							    <%= image_tag 'customer.png', size: '160x160' %>
+							<% end %></tr>
+						</div>
+				</div>
+				<div class="col-md-2">
+							<!-- ユーザーネーム -->
+							<h4><%= link_to customer.customer_name, customer_path(customer.id) %></h4>
 
-	<!-- アイコン -->
-	<div class="imag">
-		<% if customer.image.present? %>
-			<%= attachment_image_tag customer, :image, :fill, 280, 210, format: 'jpeg' %>
-		<% else %>
-		    <%= image_tag 'customer.png', size: '200x200' %>
+							<!-- ユーザーID -->
+							<%= '@' + customer.user_id %>
+				</div>
+			</div>
 		<% end %>
 	</div>
-		<!-- ユーザーネーム -->
-		<%= link_to customer.customer_name, customer_path(customer.id) %>
-
-		<!-- ユーザーID -->
-		<%= '@' + customer.user_id %>
-<% end %>
+</div>

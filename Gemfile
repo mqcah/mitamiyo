@@ -70,4 +70,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'ransack'
-
+gem 'flexbox-rails', '~> 1.0'
