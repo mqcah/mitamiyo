@@ -41,7 +41,7 @@
 			<!-- ブックマーク -->
 		<br><h4>ブックマーク一覧</h4>
 		<div class="item">
-			<% @movies.each do |movie| %>
+			<% @bookmark_movie.each do |movie| %>
 				<div class="row">
 					<!-- 映画画像 -->
 					<div class="col-md-3">
@@ -60,7 +60,7 @@
 		</div>
 		<br><h4>投稿一覧</h4>
 		<div class="item">
-			<% @movies.each do |movie| %>
+			<% @customer.movies.each do |movie| %>
 				<div class="row">
 					<!-- 映画画像 -->
 					<div class="col-md-3">

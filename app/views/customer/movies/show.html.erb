@@ -6,10 +6,12 @@
       <tr><% if @movie.movie_image.present? %>
       	<%= attachment_image_tag @movie, :movie_image, :fill, 210, 280, format: 'jpeg' %>
       <% else %>
-          <%= image_tag 'no-movie.png', size: '300x300' %>
+          <%= image_tag 'no-movie.png', size: '210x280' %>
       <% end %></tr>
       <!-- ブックマーク -->
-      <br><%= render 'customer/movies/bookmark_area', movie: @movie %>
+      <div id="show_bookmark_btn_<%= @movie.id %>">
+        <br><%= render 'customer/movies/bookmark_area', movie: @movie %>
+      </div>
     </div>
 
 

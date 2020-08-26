@@ -5,8 +5,8 @@ class Customer::CustomersController < ApplicationController
 
   def show
   	@customer = Customer.find(params[:id])
-    @movies = Bookmark.where(customer_id:@customer.id)
-    @my_movies = Movie.where(customer_id:@customer.id)
+    @bookmark_movie = Bookmark.where(customer_id:@customer.id)
+    @movie = Movie.where(customer_id:@customer.id)
   end
 
   def edit

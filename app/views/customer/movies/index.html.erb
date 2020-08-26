@@ -1,5 +1,5 @@
 <div class="container">
-	
+
 	<% @movies.each do |movie| %>
 		<div class="row">
 			<!-- 映画画像 -->
@@ -7,10 +7,12 @@
 				<tr><% if movie.movie_image.present? %>
 					<%= attachment_image_tag movie, :movie_image, :fill, 180, 240, format: 'jpeg' %>
 				<% else %>
-				    <%= image_tag 'no-movie.png', size: '200x200' %>
+				    <%= image_tag 'no-movie.png', size: '180x240' %>
 				<% end %></tr>
 			<!-- ブックマーク -->
-			<%= render 'customer/movies/bookmark_area', movie: movie %>
+				<div id="index_bookmark_btn_<%= movie.id %>">
+					<%= render 'customer/movies/bookmark_area', movie: movie %>
+				</div>
 			</div>
 
 			<div class="col-md-5">
