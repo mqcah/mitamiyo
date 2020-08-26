@@ -2,6 +2,7 @@ class CreateMovies < ActiveRecord::Migration[5.2]
   def change
     create_table :movies do |t|
 
+    	t.integer :customer_id, default: ""
 		t.string :title, default: ""
 		t.text :impression, default: ""
 		t.float :rate, default: "3"

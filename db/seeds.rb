@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Customer.create!(
+customer1 = Customer.create!(
                   customer_status: "true",
                   user_id: "mitamiyo",
                   customer_name: "ミタミヨ",
@@ -14,7 +14,7 @@ Customer.create!(
                   email: "test@mail",
                   password: "password",
                   )
-Customer.create!(
+customer2 = Customer.create!(
                   customer_status: "true",
                   user_id: "mitamiyo2",
                   customer_name: "ミタミヨ2",
@@ -23,6 +23,9 @@ Customer.create!(
                   email: "test2@mail",
                   password: "password",
                   )
+Movie.create!([{
+  cutomer_id: customer1.id
+}])
 genre_names = [
   'アクション',
   'ホラー',

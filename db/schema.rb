@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_033910) do
   end
 
   create_table "movies", force: :cascade do |t|
+    t.integer "customer_id"
     t.string "title", default: ""
     t.text "impression", default: ""
     t.float "rate", default: 3.0

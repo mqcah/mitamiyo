@@ -6,7 +6,6 @@ class Customer::CustomersController < ApplicationController
   def show
   	@customer = Customer.find(params[:id])
     @bookmark_movie = Bookmark.where(customer_id:@customer.id)
-    @movie = Movie.where(customer_id:@customer.id)
   end
 
   def edit
@@ -35,6 +34,6 @@ class Customer::CustomersController < ApplicationController
 
    private
    def customer_params
-   	params.require(:customer).permit(:customer_name, :user_id, :customer_status, :image, :profile, :password, :email)
+   	params.require(:customer).permit(:customer_name, :user_id, :customer_status, :image, :profile, :password, :email, :movie_id,)
    end
 end

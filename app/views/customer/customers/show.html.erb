@@ -64,15 +64,15 @@
 				<div class="row">
 					<!-- 映画画像 -->
 					<div class="col-md-3">
-						<tr><% if movie.movie.movie_image.present? %>
-							<%= attachment_image_tag movie.movie, :movie_image, :fill, 90, 120, format: 'jpeg' %>
+						<tr><% if movie.movie_image.present? %>
+							<%= attachment_image_tag movie, :movie_image, :fill, 90, 120, format: 'jpeg' %>
 						<% else %>
 						    <%= image_tag 'no-movie.png', size: '90x120' %>
 						<% end %></tr>
 					</div>
 						<!-- 映画タイトル -->
 					<div class="col-md-12">
-						<p><%= link_to movie.movie.title, movie_path(movie.movie.id) %></p><br>
+						<p><%= link_to movie.title, movie_path(movie.id) %></p><br>
 					</div>
 				</div>
 			<% end %>

@@ -19,6 +19,7 @@ class Customer::MoviesController < ApplicationController
 
   def create
   	@movie = Movie.new(movie_params)
+    @movie.customer_id = current_customer.id
   	if @movie.save
   		redirect_to movie_path(@movie.id)
   	else
@@ -41,6 +42,6 @@ class Customer::MoviesController < ApplicationController
 
   private
   def movie_params
-  	params.require(:movie).permit(:title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, :customer_id, genre_ids: [])
+  	params.require(:movie).permit(:customer_name, :title, :impression, :movie_image, :rate, :netflix, :amazon, :hulu, genre_ids: [])
   end
 end
