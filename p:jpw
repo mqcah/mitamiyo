@@ -1,0 +1,290 @@
+[1mdiff --git a/.DS_Store b/.DS_Store[m
+[1mindex e267f1f..ce5a2c4 100644[m
+Binary files a/.DS_Store and b/.DS_Store differ
+[1mdiff --git a/app/.DS_Store b/app/.DS_Store[m
+[1mindex 08446b4..0e60e48 100644[m
+Binary files a/app/.DS_Store and b/app/.DS_Store differ
+[1mdiff --git a/app/assets/.DS_Store b/app/assets/.DS_Store[m
+[1mindex 764a357..d063d68 100644[m
+Binary files a/app/assets/.DS_Store and b/app/assets/.DS_Store differ
+[1mdiff --git a/app/assets/images/.DS_Store b/app/assets/images/.DS_Store[m
+[1mindex 81aed89..39a7931 100644[m
+Binary files a/app/assets/images/.DS_Store and b/app/assets/images/.DS_Store differ
+[1mdiff --git a/app/assets/stylesheets/application.scss b/app/assets/stylesheets/application.scss[m
+[1mindex bc6d333..92cdbd0 100644[m
+[1m--- a/app/assets/stylesheets/application.scss[m
+[1m+++ b/app/assets/stylesheets/application.scss[m
+[36m@@ -17,6 +17,48 @@[m
+ @import "bootstrap";[m
+ [m
+ [m
+[32m+[m[32m.title {[m
+[32m+[m[32m    font-size: 80px;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.body {[m
+[32m+[m[32m    font-family: fantasy;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.top_image {[m
+[32m+[m[32m    background-image: image-url('top.png');[m
+[32m+[m[32m    padding: 90px;[m
+[32m+[m[32m    margin: 50px;[m
+[32m+[m[32m  width: 600px;[m
+[32m+[m[32m  background-size: cover;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.style_top {[m
+[32m+[m[32m  text-align: center;[m
+[32m+[m[32m  padding: 20px;[m
+[32m+[m[32m  background-color: rgba(255,255,255,0.5);[m
+[32m+[m[32m    color: black;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.style_about {[m
+[32m+[m[32m  text-align: center;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.menu {[m
+[32m+[m[32m  display: flex;[m
+[32m+[m[32m  flex-direction: row;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.about {[m
+[32m+[m[32m  margin: 70px;[m
+[32m+[m[32m}[m
+[32m+[m
+ .logo {[m
+     font-size: 50px;[m
+     font-family: Impact;[m
+[1mdiff --git a/app/controllers/customer/bookmarks_controller.rb b/app/controllers/customer/bookmarks_controller.rb[m
+[1mindex 1ed2476..cd25e19 100644[m
+[1m--- a/app/controllers/customer/bookmarks_controller.rb[m
+[1m+++ b/app/controllers/customer/bookmarks_controller.rb[m
+[36m@@ -18,4 +18,6 @@[m [mclass Customer::BookmarksController < ApplicationController[m
+     @movie = Movie.find(params[:movie_id])[m
+   end[m
+ [m
+[32m+[m[41m  [m
+[32m+[m
+ end[m
+[1mdiff --git a/app/controllers/customer/movies_controller.rb b/app/controllers/customer/movies_controller.rb[m
+[1mindex bb1b838..ad1e1ed 100644[m
+[1m--- a/app/controllers/customer/movies_controller.rb[m
+[1m+++ b/app/controllers/customer/movies_controller.rb[m
+[36m@@ -5,6 +5,14 @@[m [mclass Customer::MoviesController < ApplicationController[m
+     @genres = Genre.all[m
+   end[m
+ [m
+[32m+[m[32m    def list[m
+[32m+[m[32m    @movies = Movie.page(params[:page]).per(10)[m
+[32m+[m[32m    @movies = Movie.all.includes(:customer).recent[m
+[32m+[m[32m    @genres = Genre.all[m
+[32m+[m[32m    end[m
+[32m+[m
+[32m+[m
+[32m+[m
+   def bookmarks[m
+     @movies = current_customer.bookmark_movies.includes(:customer).recent[m
+   end[m
+[1mdiff --git a/app/models/movie.rb b/app/models/movie.rb[m
+[1mindex f2a405f..8ddd9a5 100644[m
+[1m--- a/app/models/movie.rb[m
+[1m+++ b/app/models/movie.rb[m
+[36m@@ -10,7 +10,7 @@[m [mclass Movie < ApplicationRecord[m
+ [m
+ # movieのお気に入り判定 → vies側で呼び出し[m
+   def bookmark_by?(customer)[m
+[31m-    bookmarks.where(customer_id: customer.id).exists?[m
+[32m+[m[32m      bookmarks.where(customer_id: customer.id).exists?[m
+   end[m
+   scope :recent, -> { order(created_at: :desc) }[m
+ [m
+[1mdiff --git a/app/views/customer/customers/_customer.html.erb b/app/views/customer/customers/_customer.html.erb[m
+[1mdeleted file mode 100644[m
+[1mindex 226bb7d..0000000[m
+[1m--- a/app/views/customer/customers/_customer.html.erb[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-<%= customer.user_id %>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/views/customer/customers/edit.html.erb b/app/views/customer/customers/edit.html.erb[m
+[1mindex b989675..f2683c0 100644[m
+[1m--- a/app/views/customer/customers/edit.html.erb[m
+[1m+++ b/app/views/customer/customers/edit.html.erb[m
+[36m@@ -9,7 +9,6 @@[m
+       </div>[m
+     <% end %>[m
+ [m
+[31m-<!-- 口コミ入力フォーム -->[m
+ <%= form_for(@customer, url: customer_path) do |f| %>[m
+ 	<div class="row">[m
+ 	    <div class="form-group row">[m
+[36m@@ -18,14 +17,14 @@[m
+ 		      <%= f.attachment_field :image %>[m
+ 		    </div>[m
+ 		</div>[m
+[31m-	    <!-- タイトル -->	[m
+[32m+[m	[32m    <!-- ニックネーム -->[m[41m	[m
+ 	    <div class="form-group row">[m
+ 	      <%= f.label :customer_name, 'ニックネーム ', class:'col-md-2 col-form-label' %>[m
+ 	        <div class="col-md-3">[m
+ 	          <%= f.text_field :customer_name, class: "form-control" %>[m
+ 	        </div>[m
+ 	    </div>[m
+[31m-	    <!-- 口コミ -->[m
+[32m+[m	[32m    <!-- プロフィール -->[m
+ 	    <div class="form-group row">[m
+ 	      <%= f.label :profile, 'プロフィール ', class:'col-md-2 col-form-label' %>[m
+ 	        <div class="col-md-5">[m
+[1mdiff --git a/app/views/customer/customers/show.html.erb b/app/views/customer/customers/show.html.erb[m
+[1mindex 6fceb49..dbf4aef 100644[m
+[1m--- a/app/views/customer/customers/show.html.erb[m
+[1m+++ b/app/views/customer/customers/show.html.erb[m
+[36m@@ -25,7 +25,8 @@[m
+ 				<!-- 編集 -->[m
+ 					<br><% if @customer == current_customer%>[m
+ 						<%= link_to edit_customer_path(@customer), method: :get do %>[m
+[31m-						    <i class="fas fa-cog fa-3x seting"></i>[m
+[32m+[m						[32m仮ボタン[m
+[32m+[m						[32m    <!-- <i class="fas fa-cog fa-3x seting"></i> -->[m
+ 						<% end %>[m
+ 					<% end %>[m
+ 				</div>[m
+[1mdiff --git a/app/views/homes/top.html.erb b/app/views/homes/top.html.erb[m
+[1mindex 355ec3b..e618f6c 100644[m
+[1m--- a/app/views/homes/top.html.erb[m
+[1m+++ b/app/views/homes/top.html.erb[m
+[36m@@ -5,13 +5,16 @@[m
+ [m
+             <div class="top_image">[m
+     　　　　     <div class="style_top">[m
+[31m-                    ようこそ、NaganoCakeへ！<br>[m
+[31m-                    このサイトは、ケーキ販売のECサイトになります。<br>[m
+[31m-                    会員でない方も商品の閲覧はできますが、<br>[m
+[31m-                    購入には会員登録が必要になります。[m
+[32m+[m[32m                    ようこそ、ミヨミタへ！<br>[m
+[32m+[m[32m                    このサイトは、映画の感想投稿サイトです。<br>[m
+[32m+[m[32m                    会員でない方も投稿はの閲覧はできますが、<br>[m
+[32m+[m[32m                    ブックマークや投稿は登録が必要になります。<br>[m
+[32m+[m[32m                    新規登録をして、検索欄の隣のボタンから <br>[m
+[32m+[m[32m                    映画の感想を投稿してみよう！[m
+                 </div>[m
+             </div>[m
+ [m
+[32m+[m
+         <div class="col-xs-2 col-xs-offset-10">[m
+             <p><%= link_to "もっと見る＞", movies_path %></p>[m
+         </div>[m
+[36m@@ -19,4 +22,3 @@[m
+ [m
+     </div>[m
+ </div>[m
+[31m-[m
+[1mdiff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb[m
+[1mindex 4bc36e0..1c4bdd9 100644[m
+[1m--- a/app/views/layouts/application.html.erb[m
+[1m+++ b/app/views/layouts/application.html.erb[m
+[36m@@ -62,7 +62,8 @@[m
+                 </div>[m
+                 <div class="col-md-">[m
+                     <%= link_to new_customer_movie_path, method: :get do %>[m
+[31m-                        <i class="fas fa-quidditch fa-3x posting"></i>[m
+[32m+[m[32m                    仮ボタン[m
+[32m+[m[32m                        <!-- <i class="fas fa-quidditch fa-3x posting"></i> -->[m
+                     <% end %>[m
+                 </div>[m
+         </nav>[m
+[1mdiff --git a/config/routes.rb b/config/routes.rb[m
+[1mindex cde1a20..86f805c 100644[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@ -16,6 +16,8 @@[m [mRails.application.routes.draw do[m
+ 	get 'homes/about' => 'homes#about', as: 'about'[m
+ 	get 'customers/leave' => 'customer/customers#leave', as: 'leave'[m
+ 	put "/users/:id/hide" => "users#hide", as: 'users_hide'[m
+[32m+[m	[32mget 'customer/movies' => 'customer/movies#list', as: 'list'[m
+[32m+[m
+ [m
+ 	scope module: :customer do[m
+ 	    resources :customers, only: [:show, :edit, :update, :index][m
+[1mdiff --git a/db/migrate/20200811125838_create_movies.rb b/db/migrate/20200811125838_create_movies.rb[m
+[1mindex f862cce..3616604 100644[m
+[1m--- a/db/migrate/20200811125838_create_movies.rb[m
+[1m+++ b/db/migrate/20200811125838_create_movies.rb[m
+[36m@@ -3,6 +3,7 @@[m [mclass CreateMovies < ActiveRecord::Migration[5.2][m
+     create_table :movies do |t|[m
+ [m
+     	t.integer :customer_id, default: ""[m
+[32m+[m[41m    [m	[32mt.string :customer_name, default: ""[m
+ 		t.string :title, default: ""[m
+ 		t.text :impression, default: ""[m
+ 		t.float :rate, default: "3"[m
+[1mdiff --git a/db/schema.rb b/db/schema.rb[m
+[1mindex 0029966..278de62 100644[m
+[1m--- a/db/schema.rb[m
+[1m+++ b/db/schema.rb[m
+[36m@@ -54,6 +54,7 @@[m [mActiveRecord::Schema.define(version: 2020_08_20_033910) do[m
+ [m
+   create_table "movies", force: :cascade do |t|[m
+     t.integer "customer_id"[m
+[32m+[m[32m    t.string "customer_name", default: ""[m
+     t.string "title", default: ""[m
+     t.text "impression", default: ""[m
+     t.float "rate", default: 3.0[m
+[1mdiff --git a/db/seeds.rb b/db/seeds.rb[m
+[1mindex f031e82..c296f9a 100644[m
+[1m--- a/db/seeds.rb[m
+[1m+++ b/db/seeds.rb[m
+[36m@@ -5,7 +5,7 @@[m
+ #[m
+ #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])[m
+ #   Character.create(name: 'Luke', movie: movies.first)[m
+[31m-customer1 = Customer.create!([m
+[32m+[m[32mCustomer.create!([m
+                   customer_status: "true",[m
+                   user_id: "mitamiyo",[m
+                   customer_name: "ミタミヨ",[m
+[36m@@ -14,7 +14,7 @@[m [mcustomer1 = Customer.create!([m
+                   email: "test@mail",[m
+                   password: "password",[m
+                   )[m
+[31m-customer2 = Customer.create!([m
+[32m+[m[32mCustomer.create!([m
+                   customer_status: "true",[m
+                   user_id: "mitamiyo2",[m
+                   customer_name: "ミタミヨ2",[m
+[36m@@ -23,15 +23,19 @@[m [mcustomer2 = Customer.create!([m
+                   email: "test2@mail",[m
+                   password: "password",[m
+                   )[m
+[31m-Movie.create!([{[m
+[31m-  cutomer_id: customer1.id[m
+[31m-}])[m
+[32m+[m
+ genre_names = [[m
+[31m-  'アクション',[m
+[31m-  'ホラー',[m
+[31m-  '恋愛',[m
+[31m-  'サスペンス'[m
+[31m-][m
+[32m+[m[32m                'アクション',[m
+[32m+[m[32m                'ホラー',[m
+[32m+[m[32m                'ロマンス',[m
+[32m+[m[32m                'サスペンス',[m
+[32m+[m[32m                'SF',[m
+[32m+[m[32m                'ミステリー',[m
+[32m+[m[32m                'ファンタジー',[m
+[32m+[m[32m                'アニメ',[m
+[32m+[m[32m                'ドラマ',[m
+[32m+[m[32m                '音楽',[m
+[32m+[m[32m                ][m
+ [m
+ genre_names.each do |genre_name|[m
+   Genre.create!([m

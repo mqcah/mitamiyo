@@ -1,6 +1,6 @@
 <div class="container">
 
-	<% @search_movies.each do |movie| %>
+	<% @movies.each do |movie| %>
 		<div class="row">
 			<!-- 映画画像 -->
 			<div class="col-md-2">
@@ -9,13 +9,6 @@
 				<% else %>
 				    <%= image_tag 'no-movie.png', size: '180x240' %>
 				<% end %></tr>
-				<!-- ブックマーク -->
-				<% if customer_signed_in? %>
-					<div id="index_bookmark_btn_<%= movie.id %>">
-						<%= render 'customer/movies/bookmark_area', movie: movie %>
-					</div>
-				<% end %>
-			</div>
 
 			<div class="col-md-5">
 				<!-- 映画タイトル -->
@@ -23,7 +16,7 @@
 
 				<!-- ジャンル -->
 				ジャンル：
-				<% movie.genres.each do |genre| %>
+				<% @genres.each do |genre| %>
 					<%= genre.name + ',' %>
 				<% end %>
 				<br><br>
@@ -40,6 +33,7 @@
 				    score: <%= movie.rate %>,
 				  });
 				</script><br>
+
 
 				<!-- netflix-->
 				<% if movie.netflix == true %>
@@ -64,5 +58,6 @@
 
 			</div>
 		</div>
+	</div>
 	<% end %>
 </div>

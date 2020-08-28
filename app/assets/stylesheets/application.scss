@@ -17,6 +17,48 @@
 @import "bootstrap";
 
 
+.title {
+    font-size: 80px;
+}
+
+
+.body {
+    font-family: fantasy;
+}
+
+
+.top_image {
+    background-image: image-url('top.png');
+    padding: 90px;
+    margin: 50px;
+  width: 600px;
+  background-size: cover;
+}
+
+
+.style_top {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.5);
+    color: black;
+}
+
+
+.style_about {
+  text-align: center;
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.about {
+  margin: 70px;
+}
+
 .logo {
     font-size: 50px;
     font-family: Impact;
@@ -165,6 +207,9 @@ dl.searchbox dd{
 }
 
 .posting{
-  color: black;
+  color: white;
 }
 
+.check{
+  color:#00DD00 ;
+}

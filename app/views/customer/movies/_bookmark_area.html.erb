@@ -1,5 +1,9 @@
 <% if movie.bookmark_by?(current_customer) %>
-    <%= link_to 'ブックマーク解除', customer_movie_bookmarks_path(movie.id), method: :delete, remote: true, id: :"js-bookmark-button-for-movie-#{movie.id}" %>
+    <%= link_to customer_movie_bookmarks_path(movie.id), method: :delete, remote: true, id: :"js-bookmark-button-for-movie-#{movie.id}" do %>
+    	<i class="far fa-check-square fa-3x check"></i>
+    <% end %>
 <% else %>
-        <%= link_to 'ブックマーク', customer_movie_bookmarks_path(movie.id), method: :post, remote: true, id: :"js-bookmark-button-for-movie-#{movie.id}"%>
+    <%= link_to customer_movie_bookmarks_path(movie.id), method: :post, remote: true, id: :"js-bookmark-button-for-movie-#{movie.id}" do %>
+        <i class="far fa-plus-square fa-3x plus"></i>
+    <% end %>
 <% end %>

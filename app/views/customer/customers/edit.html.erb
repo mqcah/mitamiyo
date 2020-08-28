@@ -9,7 +9,6 @@
       </div>
     <% end %>
 
-<!-- 口コミ入力フォーム -->
 <%= form_for(@customer, url: customer_path) do |f| %>
 	<div class="row">
 	    <div class="form-group row">
@@ -18,14 +17,14 @@
 		      <%= f.attachment_field :image %>
 		    </div>
 		</div>
-	    <!-- タイトル -->	
+	    <!-- ニックネーム -->	
 	    <div class="form-group row">
 	      <%= f.label :customer_name, 'ニックネーム ', class:'col-md-2 col-form-label' %>
 	        <div class="col-md-3">
 	          <%= f.text_field :customer_name, class: "form-control" %>
 	        </div>
 	    </div>
-	    <!-- 口コミ -->
+	    <!-- プロフィール -->
 	    <div class="form-group row">
 	      <%= f.label :profile, 'プロフィール ', class:'col-md-2 col-form-label' %>
 	        <div class="col-md-5">

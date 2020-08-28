@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
 
 # movieのお気に入り判定 → vies側で呼び出し
   def bookmark_by?(customer)
-    bookmarks.where(customer_id: customer.id).exists?
+      bookmarks.where(customer_id: customer.id).exists?
   end
   scope :recent, -> { order(created_at: :desc) }
 

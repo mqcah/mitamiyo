@@ -71,3 +71,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'ransack'
 gem 'flexbox-rails', '~> 1.0'
+gem 'rails-i18n', '~> 5.1'
+
+
+

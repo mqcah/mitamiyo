@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
 
 	def set_search
 	  #@search = Article.search(params[:q])
-	  @search = Customer.ransack(params[:q]) #ransackメソッド推奨
-	  @search_customers = @search.result.page(params[:page])
+	  @search = Movie.ransack(params[:q]) #ransackメソッド推奨
+	  @search_movies = @search.result.page(params[:page])
 	end
 
 	def set_movie

@@ -1,8 +1,10 @@
 class Customer::MoviesController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :create, :bookmark,]
+
+
   def index
     @movies = Movie.page(params[:page]).per(10)
-    @movies = Movie.all.includes(:customer).recent
-    @genres = Genre.all
+    @movie = Movie.all.includes(:customer).recent
   end
 
   def bookmarks
@@ -38,6 +40,13 @@ class Customer::MoviesController < ApplicationController
   	else
   	   render :edit
   	end
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    flash[:notice] = "配送先を削除しました。"
+    redirect_to customer_path(current_customer.id)
   end
 
   private

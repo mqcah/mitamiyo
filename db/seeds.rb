@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-customer1 = Customer.create!(
+Customer.create!(
                   customer_status: "true",
                   user_id: "mitamiyo",
                   customer_name: "ミタミヨ",
@@ -14,7 +14,7 @@ customer1 = Customer.create!(
                   email: "test@mail",
                   password: "password",
                   )
-customer2 = Customer.create!(
+Customer.create!(
                   customer_status: "true",
                   user_id: "mitamiyo2",
                   customer_name: "ミタミヨ2",
@@ -23,15 +23,19 @@ customer2 = Customer.create!(
                   email: "test2@mail",
                   password: "password",
                   )
-Movie.create!([{
-  cutomer_id: customer1.id
-}])
+
 genre_names = [
-  'アクション',
-  'ホラー',
-  '恋愛',
-  'サスペンス'
-]
+                'アクション',
+                'ホラー',
+                'ロマンス',
+                'サスペンス',
+                'SF',
+                'ミステリー',
+                'ファンタジー',
+                'アニメ',
+                'ドラマ',
+                '音楽',
+                ]
 
 genre_names.each do |genre_name|
   Genre.create!(
