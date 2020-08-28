@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!-- 映画イメージ -->
+      <br>
+      <tr><% if @movie.movie_image.present? %>
+      	<%= attachment_image_tag @movie, :movie_image, :fill, 210, 280, format: 'jpeg' %>
+      <% else %>
+          <%= image_tag 'no-movie.png', size: '210x280' %>
+      <% end %></tr>
+      <!-- ブックマーク -->
+        <% if customer_signed_in? %>
+          <div id="show_bookmark_btn_<%= @movie.id %>">
+            <br><%= render 'customer/movies/bookmark_area', movie: @movie %>
+          </div>
+        <% end %>
+      </div>
+
+
+    <!-- 映画タイトル -->
+    <div class="col-md-5">
+      <table class="table table-bordered">
+        <h1><%= @movie.title %></h1><br>
+      <!-- ジャンル -->
+        ジャンル：
+        <% @movie.genres.each do |genre| %>
+          <%= genre.name + ' ' %>
+        <% end %>
+        <br><br>
+      <!-- レビュー -->
+        <div id="star-rate-<%= @movie.id %>"></div>
+         <script>
+          $('#star-rate-<%= @movie.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @movie.rate %>,
+          });
+        </script>
+        <br>
+      <!-- netflix-->
+        <% if @movie.netflix == true %>
+        	Netflix：なし
+        <% else %>
+        	Netflix：あり
+        <% end %>
+        <br><br>
+      <!-- amazon-prime -->
+        <% if @movie.netflix == true %>
+        	AmazonPrime：なし
+        <% else %>
+        	AmazonPrime：あり
+        <% end %>
+        <br><br>
+
+      <!-- hulu -->
+        <% if @movie.netflix == true %>
+        	Hulu：なし
+        <% else %>
+        	Hulu：あり
+        <% end %>
+        <br><br>
+
+      <!-- 感想 -->
+        <h3><%= link_to @movie.customer.customer_name,customer_path(@movie.customer.id) %>
+        さんの感想・評価</h3>
+        <div class="box2">
+          <%= @movie.impression %>
+        </div>
+      </table>
+    </div>
+
+     <div class="row">
+      <div class="col-md-7">
+          <p><%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %></p>
+      </div>
+      <div class="col-md-4">
+        <%= link_to "削除する", customer_movie_path(@movie.id), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

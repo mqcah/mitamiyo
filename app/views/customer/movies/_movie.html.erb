@@ -1,0 +1,10 @@
+<% if current_customer.own_movie?(movie) %>
+  <div style='display: inline; float: right;'>
+    <%= link_to icon('fas', 'pen'), edit_movie_path(movie), id: :"button-edit-#{movie.id}" %>
+    <%= link_to icon('fas', 'trash-alt'), movie_path(movie), id: :"button-delete-#{board.id}",method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+  </div>
+<% else %>
+  <div style='display: inline; float: right;'>
+     <%= render 'movie/bookmark_area', movie: movie %>
+  </div>
+<% end %>

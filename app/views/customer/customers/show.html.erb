@@ -1,11 +1,83 @@
-<%= attachment_image_tag @customer, :image, :fill, 280, 210, format: 'jpeg' %>
+<div class="container">
+	<div class="row">
+		<div class="row">
+			<div class="col-md-2">
+				<!-- アイコン -->
+				<br>
+				<div class="customer-img">
+					<% if @customer.image.present? %>
+						<%= attachment_image_tag @customer, :image, :fill, 160, 160, format: 'jpeg' %>
+					<% else %>
+					    <%= image_tag 'customer.png', size: '200x200' %>
+					<% end %>
+				</div>
+			</div>
+				<div class="col-md-2">
+					<!-- ユーザーネーム -->
+					<h3><strong><%= @customer.customer_name %></strong></h3>
+				</div>
+				<div class="col-md-1">
+					<!-- ユーザーID -->
+					<br><%= '@' + @customer.user_id %>
+				</div>
 
-<h3><strong><%= @customer.customer_name %></strong></h3>
+				<div class="col-md-2 col-md-offset-5">
+				<!-- 編集 -->
+					<br><% if @customer == current_customer%>
+						<%= link_to edit_customer_path(@customer), method: :get do %>
+						<i class="fas fa-users-cog fa-4x seting"></i>
+						<% end %>
+					<% end %>
+				</div>
+				<!-- プロフィール -->
+				<div class="col-md-9 ">
+					<h3>プロフィール</h3>
+					<div class="box2">
+						<%= @customer.profile %>
+					</div>
+				</div>
+		</div>
 
-<%= '@' + @customer.user_id %>
-
-<%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-success" %>
-
-<%= @customer.profile %>
+			<!-- ブックマーク -->
+		<br><h4>ブックマーク一覧</h4>
+		<div class="item">
+			<% @bookmark_movie.each do |movie| %>
+				<div class="row">
+					<!-- 映画画像 -->
+					<div class="col-md-3">
+						<tr><% if movie.movie.movie_image.present? %>
+							<%= attachment_image_tag movie.movie, :movie_image, :fill, 90, 120, format: 'jpeg' %>
+						<% else %>
+						    <%= image_tag 'no-movie.png', size: '90x120' %>
+						<% end %></tr>
+					</div>
+						<!-- 映画タイトル -->
+					<div class="col-md-12">
+						<p><%= link_to movie.movie.title, movie_path(movie.movie.id) %></p><br>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<br><h4>投稿一覧</h4>
+		<div class="item">
+			<% @customer.movies.each do |movie| %>
+				<div class="row">
+					<!-- 映画画像 -->
+					<div class="col-md-3">
+						<tr><% if movie.movie_image.present? %>
+							<%= attachment_image_tag movie, :movie_image, :fill, 90, 120, format: 'jpeg' %>
+						<% else %>
+						    <%= image_tag 'no-movie.png', size: '90x120' %>
+						<% end %></tr>
+					</div>
+						<!-- 映画タイトル -->
+					<div class="col-md-12">
+						<p><%= link_to movie.title, movie_path(movie.id) %></p><br>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
 
 

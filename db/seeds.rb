@@ -11,6 +11,34 @@ Customer.create!(
                   customer_name: "ミタミヨ",
                   profile: "アクション系の映画が好きな主婦です",
                   image_id: "",
-                  email: "test@test.jp",
+                  email: "test@mail",
                   password: "password",
                   )
+Customer.create!(
+                  customer_status: "true",
+                  user_id: "mitamiyo2",
+                  customer_name: "ミタミヨ2",
+                  profile: "ホラー系の映画が好きな学生です",
+                  image_id: "",
+                  email: "test2@mail",
+                  password: "password",
+                  )
+
+genre_names = [
+                'アクション',
+                'ホラー',
+                'ロマンス',
+                'サスペンス',
+                'SF',
+                'ミステリー',
+                'ファンタジー',
+                'アニメ',
+                'ドラマ',
+                '音楽',
+                ]
+
+genre_names.each do |genre_name|
+  Genre.create!(
+    name: genre_name,
+  )
+end
