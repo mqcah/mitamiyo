@@ -4,14 +4,7 @@
       <!-- 映画イメージ -->
       <br>
       <tr><% if @movie.movie_image.present? %>
-
-
       	<%= attachment_image_tag @movie, :movie_image, :fill, 210, 280, format: 'jpeg' %>
-
-
-        <%= image_tag attachment_url(@movie, :movie_image, :fill, 210, 280, format: "png") %>
-
-
       <% else %>
           <%= image_tag 'no-movie.png', size: '210x280' %>
       <% end %></tr>
