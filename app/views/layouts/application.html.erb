@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Mitamiyo</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <script src="https://kit.fontawesome.com/30851ce23c.js" crossorigin="anonymous"></script>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <script type="text/javascript"></script>
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="glyphicon glyphicon-th-list" style="font-size:35px;"></span>
+                        </button>
+
+                        <div class="logo">
+                            <% if current_customer %>
+                                <%=link_to 'ミタミヨ', root_path %>
+                            <% else %>
+                                <%=link_to 'ミタミヨ', root_path %>
+                            <% end %>
+                        </div>
+                    </div>
+
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right text-color">
+                        <% if customer_signed_in? %>
+                            <li>ようこそ！<%= current_customer.customer_name %>さん！</li>
+                            <li><%= link_to "ユーザーを探す", customers_path %><li>
+                            <li><%= link_to "映画一覧", movies_path %></li>
+                            <li><%= link_to "About", about_path %></li>
+                            <li><%= link_to "マイページ", customer_path(current_customer) %></li>
+                            <li><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete %></li>
+                        <% else %>
+                            <li><%= link_to "ユーザーを探す", customers_path %><li>
+                            <li><%= link_to "投稿映画一覧", movies_path %></li>
+                            <li><%= link_to "About", about_path %></li>
+                            <li><%= link_to ' 新規登録', new_customer_registration_path %></li>
+                            <li><%= link_to ' ログイン', new_customer_session_path %></li>
+                        <% end %>
+                    </ul>
+                   </div>
+                </div>
+            </div>
+                <div class="col-md-11">
+                <!-- 検索機能 -->
+                    <dl class="searchbox">
+                      <%= search_form_for @search, url: movies_path do |f| %>
+                        <dt><%= f.text_field :title_cont ,placeholder: '検索するテキストを入力...' %></dt>
+                        <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+                      <% end %>
+                    </dl>
+                </div>
+                <div class="col-md-">
+                    <%= link_to new_customer_movie_path, method: :get do %>
+                        <i class="fas fa-edit fa-3x posting"></i>
+                    <% end %>
+                </div>
+        </nav>
+        <div class="container" style="margin-top: 140px">
+
+            <% if flash[:notice] %>
+                <div class="alert alert-success"><%= flash[:notice] %></div>
+            <% elsif flash[:alert] %>
+                <div class="alert alert-danger"><%= flash[:alert] %></div>
+            <% end %>
+
+
+            <%= yield %>
+
+        </div>
+    </body>
+</html>

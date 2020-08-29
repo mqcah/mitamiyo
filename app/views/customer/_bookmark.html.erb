@@ -1,0 +1,9 @@
+<% if Bookmar.find_by(customer_id: current_customer.id, movie_id: movie.id) %>
+  <%= link_to "customer_movie_bookmarks_path(movie.id)", method: :delete %>
+    <i class="material-icons">ブックマークする</i>
+  <% end %>
+<% else %>
+  <%= link_to "customer_movie_bookmarks_path(movie.id)", method: :post %>
+    <i class="material-icons">解除する</i>
+    <% end %>
+<% end %>

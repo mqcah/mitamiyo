@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      movie:
+        title: タイトル
+        rate: 評価
+        genre_ids: ジャンル
+        remember_me: 次回から自動的にログイン

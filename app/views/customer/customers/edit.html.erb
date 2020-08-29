@@ -1,0 +1,45 @@
+    <% if @customer.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= @customer.errors.count %> errors prohibited this obj from being saved:</h3>
+        <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<%= form_for(@customer, url: customer_path) do |f| %>
+	<div class="row">
+	    <div class="form-group row">
+		    <strong class="col-md-2 col-form-label" >アイコン</strong>
+		    <div class="col-md-3">
+		      <%= f.attachment_field :image %>
+		    </div>
+		</div>
+	    <!-- ニックネーム -->	
+	    <div class="form-group row">
+	      <%= f.label :customer_name, 'ニックネーム ', class:'col-md-2 col-form-label' %>
+	        <div class="col-md-3">
+	          <%= f.text_field :customer_name, class: "form-control" %>
+	        </div>
+	    </div>
+	    <!-- プロフィール -->
+	    <div class="form-group row">
+	      <%= f.label :profile, 'プロフィール ', class:'col-md-2 col-form-label' %>
+	        <div class="col-md-5">
+	          <%= f.text_area :profile, class: "form-control", rows: "8",
+	        placeholder:'自分の好きなジャンルや自己紹介を書きましょう！'%>
+	        </div>
+	    </div>
+	</div>
+    <!-- 確認ボタン -->
+    <br><br>
+    <div class="form-group row justify-content-end">
+      <div class="col-md-6">
+        <%= f.submit '更新する', class:"btn btn-success" %>
+      </div>
+			<!-- 退会ボタン -->
+		<%= link_to "退会する" ,leave_path, class: "btn btn-danger" %>
+    </div>
+<% end %>
