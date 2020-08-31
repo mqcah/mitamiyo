@@ -1,6 +1,6 @@
 <% if @movie.errors.any? %>
   <div id="error_explanation">
-    <h3><%= @movie.errors.count %> errors prohibited this obj from being saved:</h3>
+    <h3><%= @movie.errors.count %> つのエラーがあります。:</h3>
     <ul>
     <% @movie.errors.full_messages.each do |message| %>
       <li><%= message %></li>
