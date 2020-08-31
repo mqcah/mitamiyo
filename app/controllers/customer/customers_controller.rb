@@ -30,10 +30,10 @@ class Customer::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to root_path
-   end
+  end
 
-   private
-   def customer_params
+  private
+  def customer_params
    	params.require(:customer).permit(:customer_name, :user_id, :customer_status, :image, :profile, :password, :email, :movie_id,)
-   end
+  end
 end

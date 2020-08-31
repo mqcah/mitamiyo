@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
     before_action :set_search
 
 	def set_search
-	  #@search = Article.search(params[:q])
-	  @search = Movie.ransack(params[:q]) #ransackメソッド推奨
+	  @search = Movie.ransack(params[:q])
 	  @search_movies = @search.result.page(params[:page])
 	end
 

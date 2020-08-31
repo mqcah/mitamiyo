@@ -8,9 +8,7 @@ class Movie < ApplicationRecord
 
   attachment :movie_image
 
-  after_initialize :set_default_impression
-
-# movieのお気に入り判定 → vies側で呼び出し
+  # movieのお気に入り判定 → vies側で呼び出し
   def bookmark_by?(customer)
       bookmarks.where(customer_id: customer.id).exists?
   end
@@ -23,9 +21,5 @@ class Movie < ApplicationRecord
   end
 
   private
-
-  def set_default_impression
-    self.impression = ''
-  end
 
 end
