@@ -1,14 +1,13 @@
-
-    <% if @movie.errors.any? %>
-      <div id="error_explanation">
-        <h3><%= @movie.errors.count %> errors prohibited this obj from being saved:</h3>
-        <ul>
-        <% @movie.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
+<% if @movie.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= @movie.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+    <% @movie.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <!-- 口コミ入力フォーム -->
 <%= form_for(@movie, url: movie_path) do |f| %>

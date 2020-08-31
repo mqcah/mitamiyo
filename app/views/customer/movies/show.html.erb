@@ -78,7 +78,7 @@
           <p><%= link_to '編集する', edit_movie_path(@movie), class: "btn btn-success" %></p>
       </div>
       <div class="col-md-4">
-        <%= link_to "削除する", customer_movie_path(@movie.id), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "削除する", customer_movie_path(@movie.id), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
       </div>
     </div>
   </div>
