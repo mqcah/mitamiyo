@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 	root 'homes#top'
 	get 'homes/about' => 'homes#about', as: 'about'
 	get 'customers/leave' => 'customer/customers#leave', as: 'leave'
-	put "/users/:id/hide" => "users#hide", as: 'users_hide'
+	patch 'customers/hide' => 'customer/customers#hide', as: 'hide'
 
 	scope module: :customer do
 	    resources :customers, only: [:show, :edit, :update, :index]

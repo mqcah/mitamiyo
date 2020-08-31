@@ -10,6 +10,10 @@ class Customer < ApplicationRecord
 
   attachment :image
 
+  def active_for_authentication?
+    super && (self.customer_status == false)
+  end
+
 
   # 半角英数字のみ、重複なし
   validates :user_id, presence: true
