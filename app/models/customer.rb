@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   attachment :image
 
   def active_for_authentication?
-    super && (self.customer_status == false)
+    super && (self.customer_status == true)
   end
 
 
