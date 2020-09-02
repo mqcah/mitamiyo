@@ -16,6 +16,26 @@
 					<!-- ユーザーネーム -->
 					<h3><strong><%= @customer.customer_name %></strong></h3>
 				</div>
+
+				<!-- 追加 -->				
+				<%= link_to "フォロー(#{@customer.followings.count})", followings_customer_path(@customer), class: "nav-link" %>
+
+				<%= link_to "フォロワー(#{@customer.followers.count})", followers_customer_path(@customer), class: "nav-link" %>
+				<!-- ここまで　-->
+
+
+				<% if logged_in? && @customer != current_customer%>
+				  <div id="follow_form">
+				    <% if current_customer.following?(@customer) %>
+				      <%= render "unfollow" %>
+				    <% else %>
+				      <%= render "follow" %>
+				    <% end %>
+				  </div>
+				<% end %>
+
+
+
 				<div class="col-md-1">
 					<!-- ユーザーID -->
 					<br><%= '@' + @customer.user_id %>

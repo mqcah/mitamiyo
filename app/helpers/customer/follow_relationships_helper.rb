@@ -1,0 +1,2 @@
+module Customer::FollowRelationshipsHelper
+end
