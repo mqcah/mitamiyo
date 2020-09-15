@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_063923) do
+ActiveRecord::Schema.define(version: 2020_09_02_055815) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
@@ -74,16 +74,6 @@ ActiveRecord::Schema.define(version: 2020_09_02_063923) do
     t.boolean "hulu", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "follow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id", "follow_id"], name: "index_relationships_on_customer_id_and_follow_id", unique: true
-    t.index ["customer_id"], name: "index_relationships_on_customer_id"
-    t.index ["follow_id"], name: "index_relationships_on_follow_id"
   end
 
 end
