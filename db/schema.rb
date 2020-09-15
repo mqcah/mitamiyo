@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_055815) do
     t.integer "customer_id"
     t.string "customer_name", default: ""
     t.string "title", default: ""
-    t.text "impression"
+    t.text "impression", default: ""
     t.float "rate", default: 3.0
     t.string "movie_image_id"
     t.boolean "netflix", default: true
