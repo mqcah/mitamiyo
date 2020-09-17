@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
   has_many :movies, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_movies, through: :bookmarks, source: :movie
-  # 追加 
+  # 追加
   #フォロー
   has_many :following_relationships,foreign_key: "follower_id", class_name: "FollowRelationship",  dependent: :destroy
   has_many :followings, through: :following_relationships

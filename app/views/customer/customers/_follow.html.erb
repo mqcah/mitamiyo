@@ -1,4 +1,0 @@
-<%= form_with(model: current_customer.following_relationships.build) do |f| %>
-  <%= f.hidden_field :following_id, value: @customer.id %>
-  <%= f.submit "フォローする", class: "btn btn-outline-secondary" %>
-<% end %>
