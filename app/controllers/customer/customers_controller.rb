@@ -30,7 +30,19 @@ class Customer::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to root_path
-   end
+  end
+
+  def followings
+    @customer =Customer.find(params[:id])
+    @customers =@customer.followings.page(params[:page]).per(5)
+    render :show
+  end
+
+  def followers
+    @customer =Customer.find(params[:id])
+    @customers =@customer.followers.page(params[:page]).per(5)
+    render :show
+  end
 
    private
    def customer_params

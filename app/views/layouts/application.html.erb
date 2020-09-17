@@ -10,6 +10,7 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <script type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
     </head>
 
 
@@ -24,11 +25,7 @@
                         </button>
 
                         <div class="logo">
-                            <% if current_customer %>
-                                <%=link_to 'ミタミヨ', root_path %>
-                            <% else %>
-                                <%=link_to 'ミタミヨ', root_path %>
-                            <% end %>
+                            <%=link_to 'ミタミヨ', root_path %>
                         </div>
                     </div>
 
@@ -68,16 +65,12 @@
                 </div>
         </nav>
         <div class="container" style="margin-top: 140px">
-
             <% if flash[:notice] %>
                 <div class="alert alert-success"><%= flash[:notice] %></div>
             <% elsif flash[:alert] %>
                 <div class="alert alert-danger"><%= flash[:alert] %></div>
-            <% end %>
-
-
-            <%= yield %>
-
+        <% end %>
+        <%= yield %>
         </div>
     </body>
 </html>
