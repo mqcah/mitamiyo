@@ -42,7 +42,6 @@ class Customer::CustomersController < ApplicationController
     else
       flash[:error] = "必須項目を入力してください。"
     end
-  end
 
   private
   def customer_params
