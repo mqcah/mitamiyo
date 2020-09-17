@@ -8,7 +8,7 @@ class Movie < ApplicationRecord
 
   attachment :movie_image
 
-  # movieのお気に入り判定 → vies側で呼び出し
+# movieのお気に入り判定 → vies側で呼び出し
   def bookmark_by?(customer)
       bookmarks.where(customer_id: customer.id).exists?
   end
@@ -19,7 +19,5 @@ class Movie < ApplicationRecord
     validates :rate
     validates :genre_ids
   end
-
-  private
 
 end

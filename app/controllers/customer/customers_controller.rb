@@ -26,7 +26,7 @@ class Customer::CustomersController < ApplicationController
 
   def hide
     @customer = Customer.find(current_customer.id)
-    @customer.update(customer_status: true)
+    @customer.update(customer_status: false)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to root_path
@@ -42,7 +42,6 @@ class Customer::CustomersController < ApplicationController
     else
       flash[:error] = "必須項目を入力してください。"
     end
-  end
 
   private
   def customer_params
